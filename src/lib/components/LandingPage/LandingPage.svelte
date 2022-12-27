@@ -21,7 +21,6 @@
     let dragPosition = 0;
     let dragFrom = 0;
     let clientHeight: number;
-    let height: number;
 
     let scrollLocation = tweened(0, {
         duration: scrollDuration,
@@ -34,11 +33,11 @@
         activePage = FullpageActivity(slideCount);
 
         new ResizeObserver(() => {
-            scrollLocation.set($activePage * height);
+            scrollLocation.set($activePage * clientHeight);
         }).observe(document.body)
 
         activePage.subscribe(value => {
-            scrollLocation.set(value * height);
+            scrollLocation.set(value * clientHeight);
         });
 
         scrollLocation.subscribe((value) => {
@@ -110,12 +109,12 @@
         dragging = false;
 
         const hasScrolledUp = dragFrom > container.scrollTop
-        const scrollDelta = (hasScrolledUp ? container.scrollTop - height : container.scrollTop) % height
-        const hasExceededScrollRoundThreshold = Math.abs(scrollDelta) > height * DRAG_THRESHOLD
+        const scrollDelta = (hasScrolledUp ? container.scrollTop - clientHeight : container.scrollTop) % clientHeight
+        const hasExceededScrollRoundThreshold = Math.abs(scrollDelta) > clientHeight * DRAG_THRESHOLD
         if (hasExceededScrollRoundThreshold) {
             hasScrolledUp ? activePage.previous() : activePage.next();
         } else {
-            scrollLocation.set($activePage * height);
+            scrollLocation.set($activePage * clientHeight);
         }
     }
 
@@ -131,7 +130,7 @@
 
 </script>
 
-<svelte:window on:keydown={onKeyDown} bind:innerHeight={height}/>
+<svelte:window on:keydown={onKeyDown} />
 
 <DotBar sections={$slides} currentIndex={$activePage} on:navbar-clicked={onNavBarClicked}/>
 <div class="h-screen w-screen overflow-hidden touch-none fixed"
@@ -143,11 +142,8 @@
      on:pointerup|capture={onDragEnd}
 >
     {#each colors as color (color.c)}
-        <SlideSection sectionStore="{slides}" title="something" height="{height}">
+        <SlideSection sectionStore="{slides}" title="something" height="{clientHeight}">
             <div class="w-full h-full bg-{color.c}-500"></div>
         </SlideSection>
     {/each}
-    {#if mounted && clientHeight !== height}
-        <div style="height: {Math.abs(clientHeight - height)}px"></div>
-    {/if}
 </div>
