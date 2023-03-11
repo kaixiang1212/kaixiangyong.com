@@ -85,7 +85,9 @@
 {#if ($showHorizontalNavBar)}
 
   <div class="translate-y-0 z-10 absolute w-screen">
-      <nav class="flex shadow-gray-1000 shadow-md transition-all rounded-md m-2"
+      <nav class="flex shadow-gray-1000 shadow-md transition-all"
+           class:rounded-md={currentIndex !== 0}
+           class:m-2={currentIndex !== 0}
            class:shadow-md={currentIndex !== 0}
            class:bg-light_bg_secondary={currentIndex !== 0}
            class:dark:bg-dark_bg_secondary={currentIndex !== 0}
