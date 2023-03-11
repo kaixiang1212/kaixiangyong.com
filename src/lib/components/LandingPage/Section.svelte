@@ -1,12 +1,19 @@
 <script lang="ts">
-    import {slideSection} from "$lib/components/LandingPage/slideSection";
+    import {onMount} from "svelte";
 
     export let sectionStore;
     export let title;
     export let height;
+
+    onMount(() => {
+        sectionStore.update((val: string) => {
+            return [...val, title]
+        })
+    })
+
 </script>
 
-<section use:slideSection={{store: sectionStore, title}} style="height: {height}px">
+<section style="height: {height}px">
     <slot />
 </section>
 

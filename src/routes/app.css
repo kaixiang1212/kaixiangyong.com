@@ -5,3 +5,8 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* Basic styling for the entire page */
+body {
+    font-family: 'Fira Code', monospace;
+}

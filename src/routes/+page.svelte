@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PageSlide from "$lib/components/LandingPage/LandingPage.svelte";
+	import HomePage from "$lib/components/LandingPage/LandingPage.svelte";
 </script>
 
 <svelte:head>
@@ -7,4 +7,4 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<PageSlide />
+<HomePage />
