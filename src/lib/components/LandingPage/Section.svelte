@@ -2,8 +2,8 @@
     import {onMount} from "svelte";
 
     export let sectionStore;
-    export let title;
-    export let height;
+    export let title = "";
+    export let height = 0;
 
     onMount(() => {
         sectionStore.update((val: string) => {

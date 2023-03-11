@@ -174,13 +174,13 @@
     </div>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="About" hash="about" height="{windowHeight}">
+  <SlideSection sectionStore="{slides}" title="About" height="{windowHeight}">
     <div class="w-full h-full flex justify-center items-center" class:pt-16={$showHorizontalNavBar === true}>
       <About></About>
     </div>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Experience" hash="experience" height="{windowHeight}">
+  <SlideSection sectionStore="{slides}" title="Experience" height="{windowHeight}">
     <div class="w-full h-full" class:pt-16={$showHorizontalNavBar === true}>
       <h1>Where I've Worked</h1>
       <ul>
@@ -198,7 +198,7 @@
     </div>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Contact" hash="contact" height="{windowHeight}">
+  <SlideSection sectionStore="{slides}" title="Contact" height="{windowHeight}">
     <div class="w-full h-full flex justify-center items-center">
       <Contact />
     </div>
