@@ -1,5 +1,6 @@
 <script lang="ts">
   import Card from "$lib/components/Card.svelte";
+  import SvelteFooter from "$lib/components/LandingPage/SvelteFooter.svelte";
 </script>
 
 <Card>
@@ -12,3 +13,5 @@
     Email Me
   </a>
 </Card>
+
+<SvelteFooter/>

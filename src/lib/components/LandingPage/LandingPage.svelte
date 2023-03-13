@@ -164,19 +164,19 @@
      on:pointerup={onDragEnd}
 >
 
-  <SlideSection sectionStore="{slides}" title="Home" height="{$deviceHeight}">
+  <SlideSection sectionStore="{slides}" title="Home">
     <Home/>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="About" height="{$deviceHeight}">
+  <SlideSection sectionStore="{slides}" title="About">
     <About></About>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Experience" height="{$deviceHeight}">
+  <SlideSection sectionStore="{slides}" title="Experience">
     <Experience />
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Contact" height="{$deviceHeight}">
+  <SlideSection sectionStore="{slides}" title="Contact">
     <Contact />
   </SlideSection>
 
