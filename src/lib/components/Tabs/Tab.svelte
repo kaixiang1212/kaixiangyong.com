@@ -13,7 +13,7 @@
 </script>
 
 
-<button class="p-2 active:bg-invisible border-b-2 sm:border-l-2 sm:border-b-0 transition-all {borderColor}"
+<button class="p-2 active:bg-invisible border-b-2 sm:border-l-2 sm:border-b-0 transition-all text-left {borderColor}"
         class:selected="{$selectedTab === tab}"
         on:click="{() => selectTab(tab)}">
   <slot></slot>

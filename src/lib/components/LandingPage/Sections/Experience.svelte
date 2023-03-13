@@ -8,40 +8,53 @@
     const experiences = [
         {
             position: 'Dev Tools Software Engineer',
-            company: 'Intel',
-            company_url: 'https://www.intel.com/content/www/us/en/homepage.html',
+            name: 'Intel',
+            full_name: 'Intel',
+            url: 'https://www.intel.com/content/www/us/en/homepage.html',
             period: 'April 2021 - Present',
             summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante erat, fringilla nec lobortis efficitur, faucibus eget arcu.',
             points: ['Make some point', 'Make another Point']
         },
         {
             position: 'Backend Software Engineer',
-            company: 'Whenso Labs',
-            company_url: 'https://whenso.com/',
+            name: 'Whenso',
+            full_name: 'Whenso Labs',
+            url: 'https://whenso.com/',
             period: 'November 2020 - April 2021',
-            summary: 'this will hold summary',
+            summary: 'Id diam maecenas ultricies mi eget. Faucibus in ornare quam viverra orci sagittis eu volutpat. Risus nec feugiat in fermentum posuere urna.',
+            points: ['Make some point', 'Make another Point']
+        },
+        {
+            position: 'Bachelor of Computer Science (AI)',
+            name: 'UNSW',
+            url: 'https://www.unsw.edu.au/',
+            period: 'July 2017 - September 2020',
+            summary: 'Risus pretium quam vulputate dignissim suspendisse in. Purus non enim praesent elementum facilisis.',
             points: []
         }
     ]
+
+    console.log(experiences)
 </script>
 
 
 <Card>
-  <h1 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white left-0 w-full">Where I've Worked</h1>
+  <h1 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white left-0 w-full">Where I've Been</h1>
 
   <Tabs>
     <TabList>
-      <Tab>Intel</Tab>
-      <Tab>Whenso</Tab>
+      {#each experiences as experience (experience.name)}
+        <Tab>{experience.name}</Tab>
+      {/each}
     </TabList>
 
     <div class="grid">
-      {#each experiences as experience}
+      {#each experiences as experience (experience.name)}
         <TabPanel>
           <h3>
             <span>{experience.position}</span>
             <span class="text-blue-500"> @
-              <a href="{experience.company_url}">{experience.company}
+              <a href="{experience.url}">{experience?.full_name || experience.name}
               </a>
             </span>
           </h3>
