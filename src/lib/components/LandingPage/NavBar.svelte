@@ -95,6 +95,7 @@
           <li class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
               class:border-transparent={i !== currentIndex}
               class:border-blue-500={i === currentIndex}
+              class:md:text-lg={currentIndex === 0}
           >
             {sections[i]}
           </li>
