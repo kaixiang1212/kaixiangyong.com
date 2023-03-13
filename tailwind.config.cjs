@@ -13,8 +13,13 @@ module.exports = {
         "light_text_secondary": "#495057",
         "dark_bg_primary": "#202634",
         "dark_bg_secondary": "#293042",
+        "active_highlight": '#2563eb',
+        "inactive_highlight": '#334155',
+        "dark_active_highlight": '#3b82f6',
+        "dark_inactive_highlight": '#334155'
       },
     },
   },
   plugins: [],
+
 }

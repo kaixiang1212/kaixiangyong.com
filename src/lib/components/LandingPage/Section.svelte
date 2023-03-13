@@ -1,9 +1,9 @@
 <script lang="ts">
     import {onMount} from "svelte";
+    import {deviceHeight, showHorizontalNavBar} from "$lib/components/LandingPage/device_state.js";
 
     export let sectionStore;
     export let title = "";
-    export let height = 0;
 
     onMount(() => {
         sectionStore.update((val: string) => {
@@ -13,8 +13,10 @@
 
 </script>
 
-<section style="height: {height}px">
-    <slot />
+<section style="height: {$deviceHeight}px">
+    <div class="w-full h-full flex justify-center items-center pl-4 pr-4 pb-4" class:pt-16={$showHorizontalNavBar === true}>
+        <slot />
+    </div>
 </section>
 
 <style>

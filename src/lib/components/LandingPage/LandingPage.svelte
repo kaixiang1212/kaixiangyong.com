@@ -7,9 +7,12 @@
   import {writable} from "svelte/store";
   import NavBar from "$lib/components/LandingPage/NavBar.svelte";
   import SlideSection from "$lib/components/LandingPage/Section.svelte";
-  import {showHorizontalNavBar} from "$lib/components/LandingPage/navbar_state.js";
   import About from "$lib/components/LandingPage/Sections/About.svelte";
   import Contact from "$lib/components/LandingPage/Sections/Contact.svelte";
+  import Experience from "$lib/components/LandingPage/Sections/Experience.svelte";
+  import Home from "$lib/components/LandingPage/Sections/Home.svelte";
+  import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
+  import Contact2 from "$lib/components/LandingPage/Sections/Contact2.svelte";
 
   const slides = writable([]);
   let slideCount: Writable<number>;
@@ -42,7 +45,7 @@
     activePage.subscribe(value => {
       transitioning = true
       tick().then(() => {
-        scrollLocation.set(value * windowHeight);
+        scrollLocation.set(value * $deviceHeight);
       })
       setTimeout(() => {
         transitioning = false
@@ -55,17 +58,23 @@
       })
     })
 
-    windowHeight = containerHeight !== document.documentElement.clientHeight
+    $deviceHeight = containerHeight !== document.documentElement.clientHeight
       ? document.documentElement.clientHeight
       : containerHeight
 
     window.addEventListener('resize', () => {
-      windowHeight = containerHeight !== document.documentElement.clientHeight
+      $deviceHeight = containerHeight !== document.documentElement.clientHeight
         ? document.documentElement.clientHeight
         : containerHeight
 
-      scrollLocation.set($activePage * windowHeight);
+      scrollLocation.set($activePage * $deviceHeight);
     })
+
+    // Disable user zoom by pinching input fields.
+    document.addEventListener('gesturestart', function (e) {
+      e.preventDefault();
+    });
+
   })
 
   const scrollTo = async (target) => {
@@ -134,19 +143,18 @@
     dragging = false;
 
     const hasScrolledUp = dragFrom > container.scrollTop
-    const scrollDelta = (hasScrolledUp ? container.scrollTop - windowHeight : container.scrollTop) % windowHeight
-    const hasExceededScrollRoundThreshold = Math.abs(scrollDelta) > windowHeight * DRAG_THRESHOLD
+    const scrollDelta = (hasScrolledUp ? container.scrollTop - $deviceHeight : container.scrollTop) % $deviceHeight
+    const hasExceededScrollRoundThreshold = Math.abs(scrollDelta) > $deviceHeight * DRAG_THRESHOLD
     if (hasExceededScrollRoundThreshold) {
       hasScrolledUp ? activePage.previous() : activePage.next();
     } else {
-      scrollLocation.set($activePage * windowHeight);
+      scrollLocation.set($activePage * $deviceHeight);
     }
     return true;
   }
-
 </script>
 
-<svelte:window on:keydown={onKeyDown} />
+<svelte:window on:keydown={onKeyDown} bind:innerWidth={$deviceWidth}/>
 
 <NavBar sections={$slides} currentIndex={$activePage} on:navbar-clicked={onNavBarClicked} dragging={dragging}/>
 <div class="h-screen w-screen overflow-hidden touch-none fixed"
@@ -158,53 +166,23 @@
      on:pointerup={onDragEnd}
 >
 
-  <SlideSection sectionStore="{slides}" title="Home" height="{windowHeight}">
-    <div class="w-full h-full" class:pt-16={$showHorizontalNavBar === true}>
-      <h1>Kai Xiang Yong</h1>
-      {$showHorizontalNavBar === true}
-      <p>I’m a software engineer specializing in building web application.</p>
-      <div class="hidden sm:block">sm</div>
-      <div class="hidden md:block">md</div>
-      <div class="hidden lg:block">lg</div>
-      <div class="hidden xl:block">xl</div>
-      <div class="hidden xxl:block">xxl</div>
-      <div class="hidden sm:block portrait:hidden">sm:block portrait:hidden</div>
-      <div class="hidden sm:block landscape:hidden">sm:block landscape:hidden</div>
-      <div class="hidden sm:block portrait:hidden md:hidden">block sm:hidden portrait:hidden</div>
-    </div>
+  <SlideSection sectionStore="{slides}" title="Home" height="{$deviceHeight}">
+    <Home/>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="About" height="{windowHeight}">
-    <div class="w-full h-full flex justify-center items-center" class:pt-16={$showHorizontalNavBar === true}>
-      <About></About>
-    </div>
+  <SlideSection sectionStore="{slides}" title="About" height="{$deviceHeight}">
+    <About></About>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Experience" height="{windowHeight}">
-    <div class="w-full h-full" class:pt-16={$showHorizontalNavBar === true}>
-      <h1>Where I've Worked</h1>
-      <ul>
-        <li>
-          <h2>Company 1</h2>
-          <p>Write a brief description of your role and responsibilities at the company.</p>
-          <p>Write a list of technologies you used during your time at the company</p>
-        </li>
-        <li>
-          <h2>Company 2</h2>
-          <p>Write a brief description of your role and responsibilities at the company.</p>
-          <p>Write a list of technologies you used during your time at the company</p>
-        </li>
-      </ul>
-    </div>
+  <SlideSection sectionStore="{slides}" title="Experience" height="{$deviceHeight}">
+    <Experience />
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Contact" height="{windowHeight}">
-    <div class="w-full h-full flex justify-center items-center">
-      <Contact />
-    </div>
+  <SlideSection sectionStore="{slides}" title="Contact" height="{$deviceHeight}">
+    <Contact2 />
   </SlideSection>
 
-  {#if containerHeight !== windowHeight}
-    <div style="height: {Math.abs(containerHeight - windowHeight)}px"></div>
+  {#if containerHeight !== $deviceHeight}
+    <div style="height: {Math.abs(containerHeight - $deviceHeight)}px"></div>
   {/if}
 </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import {createEventDispatcher} from "svelte";
-  import {showHorizontalNavBar, showVerticalNavBar} from "$lib/components/LandingPage/navbar_state";
+  import {showHorizontalNavBar, showVerticalNavBar, deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
   import {quartOut} from "svelte/easing";
   import {tweened} from "svelte/motion";
 
@@ -9,11 +9,9 @@
   export let dragging: boolean;
 
   let visibilityTimeout = null;
-  let height = 0;
-  let width = 0;
 
-  $: showHorizontalNavBar.set(height > width || height > 450);
-  $: showVerticalNavBar.set(width >= height);
+  $: showHorizontalNavBar.set($deviceHeight > $deviceWidth || $deviceHeight > 450);
+  $: showVerticalNavBar.set($deviceWidth >= $deviceHeight);
 
   let visibility = tweened(0, {
     duration: 200,
@@ -60,8 +58,6 @@
 
 </script>
 
-<svelte:window bind:innerHeight={height} bind:innerWidth={width}/>
-
 {#if ($showVerticalNavBar)}
   <div class="fixed flex flex-col h-full items-center place-content-center right-10 z-10"
        on:mouseenter={showDotBar}
@@ -95,8 +91,8 @@
          class:dark:bg-dark_bg_primary={currentIndex === 0}
     >
       {#each {length: sectionCount} as _, i}
-        <ul class="link-container p-4 hidden sm:block portrait:block" on:click={() => onClick(i)}>
-          <li class="nav-link hover:text-gray-500 cursor-pointer transition-all border-b-2"
+        <ul class="link-container p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
+          <li class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
               class:border-transparent={i !== currentIndex}
               class:border-blue-500={i === currentIndex}
           >
