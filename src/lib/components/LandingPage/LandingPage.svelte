@@ -12,7 +12,6 @@
   import Experience from "$lib/components/LandingPage/Sections/Experience.svelte";
   import Home from "$lib/components/LandingPage/Sections/Home.svelte";
   import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
-  import Contact2 from "$lib/components/LandingPage/Sections/Contact2.svelte";
 
   const slides = writable([]);
   let slideCount: Writable<number>;
@@ -27,7 +26,6 @@
   let dragPosition = 0;
   let dragFrom = 0;
   let containerHeight: number;
-  let windowHeight: number;
   let transitioning = false;
 
   $: isTransitioning = transitioning || dragging;
@@ -179,7 +177,7 @@
   </SlideSection>
 
   <SlideSection sectionStore="{slides}" title="Contact" height="{$deviceHeight}">
-    <Contact2 />
+    <Contact />
   </SlideSection>
 
   {#if containerHeight !== $deviceHeight}

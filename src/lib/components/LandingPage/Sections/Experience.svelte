@@ -33,8 +33,6 @@
             points: []
         }
     ]
-
-    console.log(experiences)
 </script>
 
 
@@ -51,17 +49,17 @@
     <div class="grid">
       {#each experiences as experience (experience.name)}
         <TabPanel>
-          <h3>
+          <h2>
             <span>{experience.position}</span>
-            <span class="text-blue-500"> @
+            <span class="text-blue-400"> @
               <a href="{experience.url}">{experience?.full_name || experience.name}
               </a>
             </span>
-          </h3>
+          </h2>
           <sup>{experience.period}</sup>
           <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base transition-all">{experience.summary}</p>
           {#if experience.points}
-            <ul class="text-gray-500 list-disc list-inside text-sm lg:text-base">
+            <ul class="text-gray-400 list-disc list-inside text-sm lg:text-base">
               {#each experience.points as point}
                 <li>{point}</li>
               {/each}
