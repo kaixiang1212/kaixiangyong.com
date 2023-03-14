@@ -2,6 +2,7 @@
   import {deviceHeight} from "../device_state";
   import {fade} from 'svelte/transition'
   import {onDestroy, onMount} from "svelte";
+  import MyImage from "$lib/images/me.webp"
 
   let index = 0;
   let task = undefined;
@@ -30,7 +31,7 @@
 </script>
 
 <div class="flex items-center justify-center transition-all">
-  <img class="max-h-80" style="height: {imageHeight}" src="img.png" alt="Under Construction" draggable="false">
+  <img class="max-h-80" style="height: {imageHeight}" src={MyImage} alt="Under Construction" draggable="false">
   <div class="flex flex-col md:pl-6">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center">
       Kai Xiang Yong
