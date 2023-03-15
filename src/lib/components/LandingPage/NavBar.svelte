@@ -91,14 +91,14 @@
          class:dark:bg-dark_bg_primary={currentIndex === 0}
     >
       {#each {length: sectionCount} as _, i}
-        <ul class="link-container p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
-          <li class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
+        <div class="link-container p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
+          <div class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
               class:border-transparent={i !== currentIndex}
               class:border-blue-500={i === currentIndex}
           >
             {sections[i]}
-          </li>
-        </ul>
+          </div>
+        </div>
       {/each}
     </nav>
   </div>
