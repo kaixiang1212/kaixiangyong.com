@@ -108,10 +108,10 @@
 
   const onWheel = (event) => {
     event.preventDefault();
-    if (event.deltaY > 1) {
+    if (event.deltaY > 1 && !transitioning) {
       activePage.next();
     }
-    if (event.deltaY < -1) {
+    if (event.deltaY < -1 && !transitioning) {
       activePage.previous();
     }
   }
