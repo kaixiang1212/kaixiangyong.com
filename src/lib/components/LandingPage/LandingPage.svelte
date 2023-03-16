@@ -158,7 +158,7 @@
 <div class="h-screen w-screen overflow-hidden touch-none fixed"
      bind:this={container}
      bind:clientHeight={containerHeight}
-     on:wheel|preventDefault={onWheel}
+     on:wheel|preventDefault|nonpassive={onWheel}
      on:pointerdown={onDragStart}
      on:pointermove={onDragging}
      on:pointerup={onDragEnd}
