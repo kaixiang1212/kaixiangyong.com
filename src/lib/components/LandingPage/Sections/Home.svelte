@@ -2,10 +2,10 @@
     import {deviceHeight} from "../device_state";
     import {fade} from 'svelte/transition'
     import MyImage from "$lib/images/me.webp"
-    import GithubIcon from "$lib/images/github-icon.svelte"
-    import MailIcon from "$lib/images/mail_icon.svelte"
-    import LinkedinIcon from "$lib/images/linkedin_icon.svelte"
-    import InstagramIcon from "$lib/images/instagram_icon.svelte"
+    import GithubIcon from "$lib/images/icons/github.svelte"
+    import MailIcon from "$lib/images/icons/mail.svelte"
+    import LinkedinIcon from "$lib/images/icons/linkedin.svelte"
+    import InstagramIcon from "$lib/images/icons/instagram.svelte"
 
     $: imageHeight = $deviceHeight < 320 ? `${$deviceHeight - 32}px` : 'auto'
 
@@ -63,7 +63,7 @@
 </div>
 
 <style>
-  img {
-      object-fit: contain;
-  }
+    img {
+        object-fit: contain;
+    }
 </style>

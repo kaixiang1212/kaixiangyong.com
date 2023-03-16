@@ -1,6 +1,11 @@
 <script lang="ts">
   import {createEventDispatcher} from "svelte";
-  import {showHorizontalNavBar, showVerticalNavBar, deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
+  import {
+    deviceHeight,
+    deviceWidth,
+    showHorizontalNavBar,
+    showVerticalNavBar
+  } from "$lib/components/LandingPage/device_state";
   import {quartOut} from "svelte/easing";
   import {tweened} from "svelte/motion";
 
@@ -93,8 +98,8 @@
       {#each {length: sectionCount} as _, i}
         <div class="link-container p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
           <div class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
-              class:border-transparent={i !== currentIndex}
-              class:border-blue-500={i === currentIndex}
+               class:border-transparent={i !== currentIndex}
+               class:border-blue-500={i === currentIndex}
           >
             {sections[i]}
           </div>

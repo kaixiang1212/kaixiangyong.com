@@ -4,35 +4,7 @@
     import Tab from "$lib/components/Tabs/Tab.svelte";
     import TabPanel from "$lib/components/Tabs/TabPanel.svelte";
     import Card from "$lib/components/Card.svelte";
-
-    const experiences = [
-        {
-            position: 'Dev Tools Software Engineer',
-            name: 'Intel',
-            full_name: 'Intel',
-            url: 'https://www.intel.com/content/www/us/en/homepage.html',
-            period: 'April 2021 - Present',
-            summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ante erat, fringilla nec lobortis efficitur, faucibus eget arcu.',
-            points: ['Make some point', 'Make another Point']
-        },
-        {
-            position: 'Backend Software Engineer',
-            name: 'Whenso',
-            full_name: 'Whenso Labs',
-            url: 'https://whenso.com/',
-            period: 'November 2020 - April 2021',
-            summary: 'Id diam maecenas ultricies mi eget. Faucibus in ornare quam viverra orci sagittis eu volutpat. Risus nec feugiat in fermentum posuere urna.',
-            points: ['Make some point', 'Make another Point']
-        },
-        {
-            position: 'Bachelor of Computer Science (AI)',
-            name: 'UNSW',
-            url: 'https://www.unsw.edu.au/',
-            period: 'July 2017 - September 2020',
-            summary: 'Risus pretium quam vulputate dignissim suspendisse in. Purus non enim praesent elementum facilisis.',
-            points: []
-        }
-    ]
+    import {experiences} from "$lib/components/LandingPage/info.ts";
 </script>
 
 

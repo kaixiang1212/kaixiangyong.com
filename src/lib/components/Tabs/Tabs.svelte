@@ -1,6 +1,6 @@
 <script>
-    import { setContext, onDestroy } from 'svelte';
-    import { writable } from 'svelte/store';
+    import {onDestroy, setContext} from 'svelte';
+    import {writable} from 'svelte/store';
     import {TABS_CONTEXT} from "$lib/components/Tabs/tab_context.ts";
 
     const tabs = [];

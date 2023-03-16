@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Kai Xiang Yong</title>
+	<meta name="description" content="Kai Xiang Yong is a software engineer who specializes in building web applications." />
 </svelte:head>
 
 <HomePage />
