@@ -32,7 +32,7 @@
 </script>
 
 <div class="flex items-center justify-center transition-all">
-  <img class="max-h-80" width="150" height="320" style="height: {imageHeight}" src={MyImage} alt="Under Construction" draggable="false">
+  <img class="max-h-80" width="150" height="320" style="height: {imageHeight}" src={MyImage} alt="Me" draggable="false">
   <div class="flex flex-col md:pl-6">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center">
       Kai Xiang Yong

@@ -22,7 +22,8 @@ export const experiences = [
         name: 'UNSW',
         url: 'https://www.unsw.edu.au/',
         period: 'July 2017 - September 2020',
-        summary: 'Specialized in Artificial Intelligence and completed additional electives focused on software development, preparing myself for a career in the tech industry.',
+        summary: 'Major in Artificial Intelligence.',
+        comment: 'I know what it sounds like, but no. I did not use ChatGPT for my coursework.',
         points: []
     }
 ]

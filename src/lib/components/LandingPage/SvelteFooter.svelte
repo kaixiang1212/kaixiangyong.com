@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state.ts";
+  import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state.ts";
 
-    $: svgPx = $deviceWidth >= 768 ? 20 : 16;
+  $: svgPx = $deviceWidth >= 768 ? 20 : 16;
 </script>
 
 {#if $deviceHeight >= 450}

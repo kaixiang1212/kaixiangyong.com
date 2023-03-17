@@ -4,7 +4,7 @@
 </script>
 
 <Card>
-  <h1 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white left-0 w-full">Get In Touch</h1>
+  <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white left-0 w-full">Get In Touch</h2>
   <p class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base transition-all">
     I am currently casually browsing for for new job opportunity. I am open to exploring different roles and industries
     that align with my skills and interests.

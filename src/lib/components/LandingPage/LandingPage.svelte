@@ -12,6 +12,7 @@
   import Experience from "$lib/components/LandingPage/Sections/Experience.svelte";
   import Home from "$lib/components/LandingPage/Sections/Home.svelte";
   import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
+  import Indicator from "$lib/components/LandingPage/Indicator.svelte";
 
   const slides = writable([]);
   let slideCount: Writable<number>;
@@ -25,7 +26,7 @@
   let dragPosition = 0;
   let dragFrom = 0;
   let DRAG_THRESHOLD = 0.05
-  let scrollTime: number = 0;
+  let scrollTime = 0;
   $: containerHeight = container?.clientHeight | 0;
 
   // Config variables
@@ -159,7 +160,8 @@
 
 <svelte:window on:keydown={onKeyDown} bind:innerWidth={$deviceWidth}/>
 
-<NavBar sections={$slides} currentIndex={$activePage} on:navbar-clicked={onNavBarClicked} dragging={dragging}/>
+<Indicator sections={$slides} currentIndex={$activePage} on:page-scroll={onNavBarClicked} dragging={dragging}/>
+<NavBar sections={$slides} currentIndex={$activePage} on:page-scroll={onNavBarClicked} dragging={dragging}/>
 <div class="h-screen w-screen overflow-hidden touch-none fixed"
      bind:this={container}
      on:wheel|preventDefault|nonpassive={onWheel}
@@ -168,19 +170,19 @@
      on:pointerup={onDragEnd}
 >
 
-  <SlideSection index="0" controller={activePage} sectionStore="{slides}" title="Home">
+  <SlideSection index=0 controller={activePage} sectionStore="{slides}" title="Home">
     <Home/>
   </SlideSection>
 
-  <SlideSection index="1" controller={activePage} sectionStore="{slides}" title="About">
+  <SlideSection index=1 controller={activePage} sectionStore="{slides}" title="About">
     <About></About>
   </SlideSection>
 
-  <SlideSection index="2" controller={activePage} sectionStore="{slides}" title="Experience">
+  <SlideSection index=2 controller={activePage} sectionStore="{slides}" title="Experience">
     <Experience />
   </SlideSection>
 
-  <SlideSection index="3" controller={activePage} sectionStore="{slides}" title="Contact">
+  <SlideSection index=3 controller={activePage} sectionStore="{slides}" title="Contact">
     <Contact />
   </SlideSection>
 

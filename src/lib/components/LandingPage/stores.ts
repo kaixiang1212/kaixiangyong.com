@@ -1,4 +1,4 @@
-import { writable, type Writable, type Readable } from 'svelte/store'
+import {type Readable, type Writable, writable} from 'svelte/store'
 
 interface FullpageActivityStore extends Readable<number> {
     previous: () => void,
