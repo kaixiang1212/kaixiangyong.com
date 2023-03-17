@@ -10,7 +10,7 @@
 
 <div style:--opacity={$selectedPanel === panel ? 100 : 0}
      style="pointer-events: {$selectedPanel === panel ? 'auto' : 'none'}" class="mt-4 sm:ml-4 sm:mt-0">
-  <slot></slot>
+  <slot selected={$selectedPanel === panel}></slot>
 </div>
 
 <style>

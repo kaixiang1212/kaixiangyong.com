@@ -4,7 +4,6 @@ interface FullpageActivityStore extends Readable<number> {
     previous: () => void,
     next: () => void,
     toPage: (pageId: number) => void,
-
     activePage: number
 }
 

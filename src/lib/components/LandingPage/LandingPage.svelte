@@ -2,7 +2,7 @@
   import {onMount, tick} from "svelte";
   import {tweened} from "svelte/motion";
   import {quartOut} from "svelte/easing";
-  import {FullpageActivity} from "../../../routes/stores";
+  import {FullpageActivity} from "./stores";
   import type {Writable} from 'svelte/store';
   import {writable} from "svelte/store";
   import NavBar from "$lib/components/LandingPage/NavBar.svelte";
@@ -17,18 +17,19 @@
   let slideCount: Writable<number>;
   let activePage: FullpageActivity;
 
-  let DRAG_THRESHOLD = 0.05
-
-  let mounted = false;
+  // Auxiliary variables
   let container: HTMLElement | null;
+  let mounted = false;
   let dragging = false;
-  let scrollDuration = 750;
+  let transitioning = false;
   let dragPosition = 0;
   let dragFrom = 0;
-  let containerHeight: number;
-  let transitioning = false;
+  let DRAG_THRESHOLD = 0.05
+  let scrollTime: number = 0;
+  $: containerHeight = container?.clientHeight | 0;
 
-  $: isTransitioning = transitioning || dragging;
+  // Config variables
+  let scrollDuration = 750;
 
   let scrollLocation = tweened(0, {
     duration: scrollDuration,
@@ -75,7 +76,11 @@
 
   })
 
-  const scrollTo = async (target) => {
+  /**
+   * Creates a chaining effect for the indicators instead of jumping right into target page.
+   * @param {number} target - target page index.
+   */
+  const scrollTo = async (target: number) => {
     if ($activePage === target) return;
     const direction = target > $activePage ? 1 : -1;
     while ($activePage !== target) {
@@ -107,12 +112,12 @@
   }
 
   const onWheel = (event) => {
-    event.preventDefault();
-    if (event.deltaY > 1 && !transitioning) {
-      activePage.next();
-    }
-    if (event.deltaY < -1 && !transitioning) {
-      activePage.previous();
+    const now = Date.now()
+    const deltaY = event.deltaY
+
+    if (Math.abs(deltaY) > 20 && now - scrollTime >= scrollDuration) {
+      deltaY < 0 ? activePage.previous() : activePage.next()
+      scrollTime = now;
     }
   }
 
@@ -140,11 +145,11 @@
     if (!container) return;
     dragging = false;
 
-    const hasScrolledUp = dragFrom > container.scrollTop
-    const scrollDelta = (hasScrolledUp ? container.scrollTop - $deviceHeight : container.scrollTop) % $deviceHeight
+    const scrollDelta = dragFrom - container.scrollTop
     const hasExceededScrollRoundThreshold = Math.abs(scrollDelta) > $deviceHeight * DRAG_THRESHOLD
+
     if (hasExceededScrollRoundThreshold) {
-      hasScrolledUp ? activePage.previous() : activePage.next();
+      scrollDelta > 0 ? activePage.previous() : activePage.next();
     } else {
       scrollLocation.set($activePage * $deviceHeight);
     }
@@ -157,26 +162,25 @@
 <NavBar sections={$slides} currentIndex={$activePage} on:navbar-clicked={onNavBarClicked} dragging={dragging}/>
 <div class="h-screen w-screen overflow-hidden touch-none fixed"
      bind:this={container}
-     bind:clientHeight={containerHeight}
      on:wheel|preventDefault|nonpassive={onWheel}
      on:pointerdown={onDragStart}
      on:pointermove={onDragging}
      on:pointerup={onDragEnd}
 >
 
-  <SlideSection sectionStore="{slides}" title="Home">
+  <SlideSection index="0" controller={activePage} sectionStore="{slides}" title="Home">
     <Home/>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="About">
+  <SlideSection index="1" controller={activePage} sectionStore="{slides}" title="About">
     <About></About>
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Experience">
+  <SlideSection index="2" controller={activePage} sectionStore="{slides}" title="Experience">
     <Experience />
   </SlideSection>
 
-  <SlideSection sectionStore="{slides}" title="Contact">
+  <SlideSection index="3" controller={activePage} sectionStore="{slides}" title="Contact">
     <Contact />
   </SlideSection>
 

@@ -19,12 +19,13 @@
     </TabList>
 
     <div class="grid">
-      {#each experiences as experience (experience.name)}
-        <TabPanel>
+      {#each experiences as experience, i (experience.name)}
+        <TabPanel let:selected={active}>
           <h2>
             <span>{experience.position}</span>
             <span class="text-blue-600 dark:text-blue-400 font-semibold"> @
-              <a href="{experience.url}">{experience?.full_name || experience.name}
+              <a tabindex="{active ? '0' : '-1'}" href="{experience.url}">
+                {experience?.full_name || experience.name}
               </a>
             </span>
           </h2>
