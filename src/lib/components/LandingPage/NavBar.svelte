@@ -31,7 +31,7 @@
     >
       {#each {length: sectionCount} as _, i}
         <button class="p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
-          <span class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
+          <span class="hover:text-gray-500 cursor-pointer transition-all border-b-2 font-semibold"
                 class:border-transparent={i !== currentIndex}
                 class:border-blue-500={i === currentIndex}
           >
