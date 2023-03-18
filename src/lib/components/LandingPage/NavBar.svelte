@@ -1,7 +1,6 @@
 <script lang="ts">
-  import {showHorizontalNavBar} from "$lib/components/LandingPage/device_state";
+  import {deviceHeight, deviceWidth, showHorizontalNavBar} from "./device_state";
   import {createEventDispatcher} from "svelte";
-  import {deviceHeight, deviceWidth} from "./device_state";
 
   export let sections: [string] | undefined;
   export let currentIndex: number | undefined = undefined;
@@ -31,7 +30,7 @@
          class:dark:bg-dark_bg_primary={currentIndex === 0}
     >
       {#each {length: sectionCount} as _, i}
-        <button class="link-container p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
+        <button class="p-4 hidden sm:block portrait:block text-sm sm:text-base" on:click={() => onClick(i)}>
           <span class="hover:text-gray-500 cursor-pointer transition-all border-b-2"
                 class:border-transparent={i !== currentIndex}
                 class:border-blue-500={i === currentIndex}

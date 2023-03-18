@@ -1,8 +1,8 @@
 <script lang="ts">
   import {onMount} from "svelte";
-  import {deviceHeight, showHorizontalNavBar} from "$lib/components/LandingPage/device_state.js";
-  import {FullpageActivity} from "./stores";
   import {to_number} from "svelte/internal";
+  import {deviceHeight, showHorizontalNavBar} from "./device_state.js";
+  import {FullpageActivity} from "./stores";
 
   export let index: number;
   export let controller: FullpageActivity | undefined = undefined;

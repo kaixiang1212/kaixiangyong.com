@@ -1,6 +1,6 @@
 <script>
-    import {deviceHeight} from "../device_state";
     import {fade} from 'svelte/transition'
+    import {deviceHeight} from "../device_state";
     import MyImage from "$lib/images/me.webp"
     import GithubIcon from "$lib/images/icons/github.svelte"
     import MailIcon from "$lib/images/icons/mail.svelte"

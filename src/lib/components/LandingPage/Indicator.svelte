@@ -4,7 +4,7 @@
         deviceHeight,
         deviceWidth,
         showVerticalNavBar
-    } from "$lib/components/LandingPage/device_state";
+    } from "./device_state";
     import {quartOut} from "svelte/easing";
     import {tweened} from "svelte/motion";
 

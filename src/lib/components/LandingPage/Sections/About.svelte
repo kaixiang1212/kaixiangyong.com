@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Card from "$lib/components/Card.svelte";
+  import Card from "../../Card.svelte";
   import ScalaIcon from "$lib/images/icons/scala.svelte"
   import GoIcon from "$lib/images/icons/golang.svelte"
   import TypescriptIcon from "$lib/images/icons/typescript.svelte"
   import PythonIcon from "$lib/images/icons/python.svelte"
   import AwsIcon from "$lib/images/icons/aws.svelte"
   import {deviceHeight} from "../device_state";
-  import {experiences} from "$lib/components/LandingPage/info.ts";
+  import {experiences} from "../info.ts";
 
   $: showIcon = $deviceHeight >= 450
 </script>

@@ -5,14 +5,14 @@
   import {FullpageActivity} from "./stores";
   import type {Writable} from 'svelte/store';
   import {writable} from "svelte/store";
-  import NavBar from "$lib/components/LandingPage/NavBar.svelte";
-  import SlideSection from "$lib/components/LandingPage/Section.svelte";
-  import About from "$lib/components/LandingPage/Sections/About.svelte";
-  import Contact from "$lib/components/LandingPage/Sections/Contact.svelte";
-  import Experience from "$lib/components/LandingPage/Sections/Experience.svelte";
-  import Home from "$lib/components/LandingPage/Sections/Home.svelte";
-  import {deviceHeight, deviceWidth} from "$lib/components/LandingPage/device_state";
-  import Indicator from "$lib/components/LandingPage/Indicator.svelte";
+  import NavBar from "./NavBar.svelte";
+  import SlideSection from "./Section.svelte";
+  import About from "./Sections/About.svelte";
+  import Contact from "./Sections/Contact.svelte";
+  import Experience from "./Sections/Experience.svelte";
+  import Home from "./Sections/Home.svelte";
+  import {deviceHeight, deviceWidth} from "./device_state";
+  import Indicator from "./Indicator.svelte";
 
   const slides = writable([]);
   let slideCount: Writable<number>;

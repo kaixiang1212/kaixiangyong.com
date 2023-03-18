@@ -1,10 +1,10 @@
 <script>
-    import Tabs from "$lib/components/Tabs/Tabs.svelte";
-    import TabList from "$lib/components/Tabs/TabList.svelte";
-    import Tab from "$lib/components/Tabs/Tab.svelte";
-    import TabPanel from "$lib/components/Tabs/TabPanel.svelte";
-    import Card from "$lib/components/Card.svelte";
-    import {experiences} from "$lib/components/LandingPage/info.ts";
+    import Tabs from "../../Tabs/Tabs.svelte";
+    import TabList from "../../Tabs/TabList.svelte";
+    import Tab from "../../Tabs/Tab.svelte";
+    import TabPanel from "../../Tabs/TabPanel.svelte";
+    import Card from "../../Card.svelte";
+    import {experiences} from "../info.ts";
 </script>
 
 

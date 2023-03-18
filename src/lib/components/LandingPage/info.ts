@@ -14,7 +14,7 @@ export const experiences = [
         full_name: 'Whenso Labs',
         url: 'https://whenso.com/',
         period: 'November 2020 - April 2021',
-        summary: 'Design and build APIs using cloud solutions to interact with mobile and web applications for multiple concurrent projects, contributing to the development of innovative solutions to existing problems.',
+        summary: 'Design and build APIs using cloud solutions to handle requests from mobile and web applications for multiple concurrent projects, contributing to the development of innovative solutions to existing problems.',
         points: []
     },
     {
