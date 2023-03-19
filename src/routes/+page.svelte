@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Kai Xiang Yong</title>
+  <title>Kai Xiang Yong's Portfolio</title>
   <meta
     name="description"
     content="Kai Xiang Yong is a software engineer who specializes in building web applications."

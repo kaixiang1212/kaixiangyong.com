@@ -37,17 +37,18 @@
     style="height: {imageHeight}"
     src={MyImage}
     alt="Me"
+    title="My Very Cool Portrait"
     draggable="false"
   />
   <div class="flex flex-col md:pl-6">
     <h1
-      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
+        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
     >
       Kai Xiang Yong
     </h1>
-    <p in:fade class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base">
+    <h2 in:fade class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base">
       Software Engineer @ Intel
-    </p>
+    </h2>
     <div class="text-xl	flex ">
       {#each links as link (link.name)}
         <div class="w-6 h-6 ml-1">
