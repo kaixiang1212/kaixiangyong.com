@@ -173,7 +173,9 @@
   on:page-scroll={onNavBarClicked}
   {dragging}
 />
-<NavBar sections={$slides} currentIndex={$activePage} on:page-scroll={onNavBarClicked} {dragging} />
+
+<NavBar sections={$slides} currentIndex={$activePage} on:page-scroll={onNavBarClicked} />
+
 <div
   class="h-screen w-screen overflow-hidden touch-none fixed"
   bind:this={container}
