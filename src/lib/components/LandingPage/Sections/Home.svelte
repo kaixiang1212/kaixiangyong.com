@@ -18,7 +18,9 @@
         const interval = setInterval(() => {
             if (cellSize > 1) cellSize--;
             else clearInterval(interval);
-            draw();
+            requestAnimationFrame(() => {
+                draw();
+            })
         }, 200);
     }
 
