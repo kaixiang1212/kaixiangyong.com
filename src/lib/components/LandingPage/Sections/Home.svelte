@@ -50,7 +50,7 @@
 <div class="flex items-center justify-center transition-all">
 
     <div class="max-h-80" in:fade>
-      <AsciiPixelate src="me.webp"
+      <AsciiPixelate src="download.webp"
                      cellSize="{cellSize}"
                      ascii="01"
                      height="320"
