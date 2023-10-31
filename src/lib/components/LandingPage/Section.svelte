@@ -2,10 +2,10 @@
   import { onMount } from 'svelte';
   import { to_number } from 'svelte/internal';
   import { deviceHeight, showHorizontalNavBar } from './device_state.js';
-  import { FullpageActivity } from './stores';
+  import type { FullpageActivity } from "$lib/components/LandingPage/stores";
 
   export let index: number;
-  export let controller: FullpageActivity | undefined = undefined;
+  export let controller: typeof FullpageActivity | undefined = undefined;
   export let sectionStore;
   export let title = '';
 

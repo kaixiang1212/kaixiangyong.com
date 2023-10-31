@@ -1,6 +1,6 @@
 <script>
-  import { getContext } from 'svelte';
-  import { TABS_CONTEXT } from '$lib/components/Tabs/tab_context.ts';
+  import { getContext } from "svelte";
+  import { TABS_CONTEXT } from "$lib/components/Tabs/tab_context";
 
   const tab = {};
   const { registerTab, selectTab, selectedTab } = getContext(TABS_CONTEXT);

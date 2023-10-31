@@ -1,10 +1,10 @@
 <script>
-  import Tabs from '../../Tabs/Tabs.svelte';
-  import TabList from '../../Tabs/TabList.svelte';
-  import Tab from '../../Tabs/Tab.svelte';
-  import TabPanel from '../../Tabs/TabPanel.svelte';
-  import Card from '../../Card.svelte';
-  import { experiences } from '../info.ts';
+  import Tabs from "../../Tabs/Tabs.svelte";
+  import TabList from "../../Tabs/TabList.svelte";
+  import Tab from "../../Tabs/Tab.svelte";
+  import TabPanel from "../../Tabs/TabPanel.svelte";
+  import Card from "../../Card.svelte";
+  import { experiences } from "../info";
 </script>
 
 <Card>

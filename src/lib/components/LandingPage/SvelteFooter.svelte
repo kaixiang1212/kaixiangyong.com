@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { deviceHeight, deviceWidth } from './device_state.ts';
+  import { deviceHeight, deviceWidth } from './device_state';
 
   $: svgPx = $deviceWidth >= 768 ? 20 : 16;
 </script>

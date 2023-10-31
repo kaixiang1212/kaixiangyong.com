@@ -1,33 +1,13 @@
 <script>
-    import {fade} from 'svelte/transition';
-    import GithubIcon from '$lib/images/icons/github.svelte';
-    import MailIcon from '$lib/images/icons/mail.svelte';
-    import LinkedinIcon from '$lib/images/icons/linkedin.svelte';
-    import InstagramIcon from '$lib/images/icons/instagram.svelte';
-    import AsciiPixelate from "../../Ascii/AsciiPixelate.svelte";
-    import {onMount} from "svelte";
+  import { fade } from "svelte/transition";
+  import { deviceHeight } from "../device_state";
+  import MyImage from "$lib/images/me.webp";
+  import GithubIcon from "$lib/images/icons/github.svelte";
+  import MailIcon from "$lib/images/icons/mail.svelte";
+  import LinkedinIcon from "$lib/images/icons/linkedin.svelte";
+  import InstagramIcon from "$lib/images/icons/instagram.svelte";
 
-    let draw;
-    let mounted = false;
-    let animationStart = false;
-
-    let cellSize = 10;
-
-    function increaseIndex() {
-        animationStart = true
-        const interval = setInterval(() => {
-            if (cellSize > 1) cellSize--;
-            else clearInterval(interval);
-            requestAnimationFrame(() => {
-                draw();
-            })
-        }, 200);
-    }
-
-    onMount(() => {
-        mounted = true;
-        increaseIndex();
-    })
+  $: imageHeight = $deviceHeight < 320 ? `${$deviceHeight - 32}px` : 'auto';
 
   const links = [
     {
@@ -50,20 +30,19 @@
 </script>
 
 <div class="flex items-center justify-center transition-all">
-
-    <div class="max-h-80" in:fade>
-      <AsciiPixelate src="me.webp"
-                     cellSize="{cellSize}"
-                     ascii="01"
-                     height="320"
-                     width="150"
-                     bind:render={draw}
-                     on:animation-start={increaseIndex}/>
-    </div>
-
+  <img
+    class="max-h-80"
+    width="150"
+    height="320"
+    style="height: {imageHeight}"
+    src={MyImage}
+    alt="Me"
+    title="My Very Cool Portrait"
+    draggable="false"
+  />
   <div class="flex flex-col md:pl-6">
     <h1
-        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
+      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
     >
       Kai Xiang Yong
     </h1>
@@ -91,3 +70,9 @@
     </div>
   </div>
 </div>
+
+<style>
+    img {
+        object-fit: contain;
+    }
+</style>
