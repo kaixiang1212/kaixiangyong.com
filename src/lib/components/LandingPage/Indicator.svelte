@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import { deviceHeight, deviceWidth, showVerticalNavBar } from './device_state';
-  import { quartOut } from 'svelte/easing';
-  import { tweened } from 'svelte/motion';
+  import { createEventDispatcher } from "svelte";
+  import { deviceHeight, deviceWidth, showVerticalNavBar } from "./device_state";
+  import { quartOut } from "svelte/easing";
+  import { tweened } from "svelte/motion";
 
-  export let sections: [string] | undefined;
+  export let sections: [string];
   export let currentIndex: number | undefined = undefined;
   export let dragging: boolean;
 
-  let visibilityTimeout = null;
+  let visibilityTimeout: null | number = null;
 
   $: showVerticalNavBar.set($deviceWidth >= $deviceHeight);
 
@@ -17,7 +17,7 @@
     easing: quartOut
   });
 
-  $: sectionCount = sections?.length;
+  $: sectionCount = sections?.length || 0;
 
   // Show dot bar when dragging.
   $: if (dragging) {
@@ -35,7 +35,7 @@
 
   const dispatch = createEventDispatcher();
 
-  function onClick(index) {
+  function onClick(index: number) {
     dispatch('page-scroll', index);
   }
 
@@ -73,7 +73,7 @@
         class:bg-gray-600={currentIndex !== i}
       >
         <span
-          class="absolute w-auto p-2 m-2 min-w-max right-6 rounded-md shadow-md text-white dark:bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left group-hover:scale-100 shadow-md shadow-gray-900"
+          class="absolute w-auto p-2 m-2 min-w-max right-6 rounded-md text-white dark:bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left group-hover:scale-100 shadow-md shadow-gray-900"
         >
           {sections[i]}
         </span>

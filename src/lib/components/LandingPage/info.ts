@@ -16,7 +16,7 @@ export const experiences = [
     url: 'https://www.whenso.com/',
     period: 'November 2020 - April 2021',
     summary:
-      'Design and build APIs using cloud solutions to handle requests from mobile and web applications for multiple concurrent projects, contributing to the development of innovative solutions to existing problems.',
+      'Design and build APIs using cloud solutions to handle requests from mobile and web applications for multiple concurrent projects, contributing to the development of innovative solutions.',
     points: []
   },
   {
@@ -24,7 +24,7 @@ export const experiences = [
     name: 'UNSW',
     url: 'https://www.unsw.edu.au/',
     period: 'July 2017 - September 2020',
-    summary: 'Major in Artificial Intelligence.',
+    summary: 'Majored in Artificial Intelligence.',
     comment: '',
     points: []
   }

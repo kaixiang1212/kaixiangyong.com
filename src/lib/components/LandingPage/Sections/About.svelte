@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Card from '../../Card.svelte';
-  import ScalaIcon from '$lib/images/icons/scala.svelte';
-  import GoIcon from '$lib/images/icons/golang.svelte';
-  import TypescriptIcon from '$lib/images/icons/typescript.svelte';
-  import PythonIcon from '$lib/images/icons/python.svelte';
-  import AwsIcon from '$lib/images/icons/aws.svelte';
-  import { deviceHeight } from '../device_state';
-  import { experiences } from '../info.ts';
+  import Card from "../../Card.svelte";
+  import ScalaIcon from "$lib/images/icons/scala.svelte";
+  import GoIcon from "$lib/images/icons/golang.svelte";
+  import TypescriptIcon from "$lib/images/icons/typescript.svelte";
+  import PythonIcon from "$lib/images/icons/python.svelte";
+  import AwsIcon from "$lib/images/icons/aws.svelte";
+  import { deviceHeight } from "../device_state";
+  import { experiences } from "../info";
 
   $: showIcon = $deviceHeight >= 450;
 </script>
@@ -93,18 +93,18 @@
 </Card>
 
 <style>
-  li {
-    width: 100%;
-  }
-  li > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .icon {
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+    li {
+        width: 100%;
+    }
+    li > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .icon {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 </style>

@@ -16,7 +16,7 @@
 
   const slides = writable([]);
   let slideCount: Writable<number>;
-  let activePage: FullpageActivity;
+  let activePage: typeof FullpageActivity;
 
   // Auxiliary variables
   let container: HTMLElement | null;
@@ -27,7 +27,7 @@
   let dragFrom = 0;
   let DRAG_THRESHOLD = 0.05;
   let scrollTime = 0;
-  $: containerHeight = container?.clientHeight | 0;
+  $: containerHeight = container?.clientHeight || 0;
 
   // Config variables
   let scrollDuration = 750;

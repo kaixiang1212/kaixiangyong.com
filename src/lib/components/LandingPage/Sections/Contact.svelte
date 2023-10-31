@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Card from '../../Card.svelte';
-  import SvelteFooter from '../SvelteFooter.svelte';
+  import Card from "../../Card.svelte";
+  import SvelteFooter from "../SvelteFooter.svelte";
 </script>
 
 <Card>

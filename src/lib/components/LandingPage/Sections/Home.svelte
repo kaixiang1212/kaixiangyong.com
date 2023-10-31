@@ -1,11 +1,11 @@
 <script>
-  import { fade } from 'svelte/transition';
-  import { deviceHeight } from '../device_state';
-  import MyImage from '$lib/images/me.webp';
-  import GithubIcon from '$lib/images/icons/github.svelte';
-  import MailIcon from '$lib/images/icons/mail.svelte';
-  import LinkedinIcon from '$lib/images/icons/linkedin.svelte';
-  import InstagramIcon from '$lib/images/icons/instagram.svelte';
+  import { fade } from "svelte/transition";
+  import { deviceHeight } from "../device_state";
+  import MyImage from "$lib/images/me.webp";
+  import GithubIcon from "$lib/images/icons/github.svelte";
+  import MailIcon from "$lib/images/icons/mail.svelte";
+  import LinkedinIcon from "$lib/images/icons/linkedin.svelte";
+  import InstagramIcon from "$lib/images/icons/instagram.svelte";
 
   $: imageHeight = $deviceHeight < 320 ? `${$deviceHeight - 32}px` : 'auto';
 
@@ -42,7 +42,7 @@
   />
   <div class="flex flex-col md:pl-6">
     <h1
-        class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
+      class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
     >
       Kai Xiang Yong
     </h1>
@@ -72,7 +72,7 @@
 </div>
 
 <style>
-  img {
-    object-fit: contain;
-  }
+    img {
+        object-fit: contain;
+    }
 </style>
