@@ -1,6 +1,6 @@
 <script lang="ts">
   import {onDestroy, onMount} from "svelte";
-  import {AsciiEffect} from "./ascii.ts";
+  import {AsciiEffect} from "./ascii";
 
   export let ascii = "!@#$%^&*()+";
   export let src;

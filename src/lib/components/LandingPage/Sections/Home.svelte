@@ -1,13 +1,32 @@
-<script>
-  import { fade } from "svelte/transition";
-  import { deviceHeight } from "../device_state";
-  import MyImage from "$lib/images/me.webp";
+<script lang="ts">
+  import {fade} from "svelte/transition";
   import GithubIcon from "$lib/images/icons/github.svelte";
   import MailIcon from "$lib/images/icons/mail.svelte";
   import LinkedinIcon from "$lib/images/icons/linkedin.svelte";
   import InstagramIcon from "$lib/images/icons/instagram.svelte";
+  import AsciiPixelate from "$lib/components/Ascii/AsciiPixelate.svelte";
+  import {onMount} from "svelte";
 
-  $: imageHeight = $deviceHeight < 320 ? `${$deviceHeight - 32}px` : 'auto';
+  let draw: () => void;
+
+  let cellSize = 8;
+
+  function render() {
+    const reduceMotionPreferred = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+    if (reduceMotionPreferred) {
+      draw();
+    } else {
+      setInterval(() => {
+        requestAnimationFrame(() => {
+          draw();
+        })
+      }, 500);
+    }
+  }
+
+  onMount(() => {
+    render();
+  });
 
   const links = [
     {
@@ -30,16 +49,15 @@
 </script>
 
 <div class="flex items-center justify-center transition-all">
-  <img
-    class="max-h-80"
-    width="150"
-    height="320"
-    style="height: {imageHeight}"
-    src={MyImage}
-    alt="Me"
-    title="My Very Cool Portrait"
-    draggable="false"
-  />
+  <div class="max-h-80" in:fade>
+    <AsciiPixelate src="me.webp"
+                   cellSize="{cellSize}"
+                   ascii="01"
+                   height="320"
+                   width="150"
+                   bind:render={draw}
+                   on:animation-start={render}/>
+  </div>
   <div class="flex flex-col md:pl-6">
     <h1
       class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap text-center"
