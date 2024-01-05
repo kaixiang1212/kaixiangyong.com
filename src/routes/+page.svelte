@@ -79,14 +79,14 @@
                      bind:render={draw}
                      on:animation-start={render}/>
     </div>
-    <div class="flex flex-col md:pl-6 min-w-full pl-2" in:fade>
+    <div class="flex flex-col md:pl-6 pl-2" in:fade>
       <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap">
         Kai Xiang Yong
       </h1>
       <h2 in:fade class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base">
         Software Engineer @ Intel
       </h2>
-      <div class="text-xl	flex ">
+      <div class="text-xl flex space-x-2">
         {#each links as link (link.name)}
           <div class="w-6 h-6 ml-1">
             <a href={link.link} target="_blank" rel="noopener noreferrer">
