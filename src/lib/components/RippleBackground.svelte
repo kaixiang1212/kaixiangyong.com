@@ -119,4 +119,4 @@
     }
 </style>
 
-<canvas in:fade bind:this={canvas}/>
+<canvas in:fade|global bind:this={canvas}/>

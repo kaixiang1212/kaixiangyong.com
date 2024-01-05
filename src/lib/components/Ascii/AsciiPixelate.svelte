@@ -49,7 +49,7 @@
 </script>
 
 {#if mounted}
-  <canvas transition:fade bind:this={canvas} width="{width}" height="{height}"></canvas>
+  <canvas transition:fade|global bind:this={canvas} width="{width}" height="{height}"></canvas>
 {:else}
   <canvas width="{width}" height="{height}"></canvas>
 {/if}
