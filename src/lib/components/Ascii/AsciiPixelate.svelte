@@ -1,21 +1,24 @@
 <script lang="ts">
   import {onDestroy, onMount} from "svelte";
+  import {fade} from 'svelte/transition';
+
   import {AsciiEffect} from "./ascii";
 
   export let ascii = "!@#$%^&*()+";
-  export let src;
-  export let height;
-  export let width;
+  export let src: string;
+  export let height: number;
+  export let width: number;
   export let cellSize = 6;
 
   export function render() {
     return effect?.draw();
   }
 
-  let canvas;
+  let canvas: HTMLCanvasElement;
   let effect: AsciiEffect | undefined;
-  let image;
-  let interval_task;
+  let image: HTMLImageElement | undefined;
+  let interval_task: number | undefined;
+  let mounted = false;
 
   $: {
     if (cellSize >= 1) {
@@ -29,11 +32,14 @@
     image = new Image();
     image.src = src
     image.onload = () => {
-      canvas.width = width ?? image.width;
-      canvas.height = height ?? image.height;
-      effect = new AsciiEffect(image, ctx, canvas.width, canvas.height, cellSize, ascii);
-      effect.draw();
+      canvas.width = width ?? image?.width;
+      canvas.height = height ?? image?.height;
+      if (image && ctx) {
+        effect = new AsciiEffect(image, ctx, canvas.width, canvas.height, cellSize, ascii);
+        effect.draw();
+      }
     };
+    mounted = true;
   })
 
   onDestroy(() => {
@@ -42,4 +48,8 @@
 
 </script>
 
-<canvas bind:this={canvas}></canvas>
+{#if mounted}
+  <canvas transition:fade bind:this={canvas} width="{width}" height="{height}"></canvas>
+{:else}
+  <canvas width="{width}" height="{height}"></canvas>
+{/if}
