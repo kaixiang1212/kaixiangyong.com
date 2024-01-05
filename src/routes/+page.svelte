@@ -69,7 +69,7 @@
 
 
 {#if mounted}
-  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex items-center justify-center">
     <div class="max-h-80" in:fade>
       <AsciiPixelate src="me.webp"
                      cellSize="{cellSize}"
