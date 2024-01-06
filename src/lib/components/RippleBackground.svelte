@@ -6,8 +6,6 @@
   import {OrbitControls} from 'three/addons/controls/OrbitControls';
 
   let t = 0;
-  let f = 0.002;
-  let a = 3;
 
   const count = 100;
   const sep = 3;
@@ -18,6 +16,7 @@
   let controls: OrbitControls;
   let canvas: HTMLCanvasElement;
   let geometry: BufferGeometry;
+  let points: THREE.Points;
 
   onMount(() => {
     init();
@@ -35,7 +34,7 @@
       for (let zi = 0; zi < count; zi++) {
         let x = sep * (xi - count / 2);
         let z = sep * (zi - count / 2);
-        let y = graph(x, z) - 30;
+        let y = 0; // Initialize y-coordinate to 0
         positions.push(x, y, z);
       }
     }
@@ -43,8 +42,7 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(132.61946894496282,20.498173466151506,-46.48686210396995)
-    camera.lookAt(131.68564773446846,20.353838480410996,-46.15953144741281);
+    camera.position.set(165.38, 21.75, -0.20)
 
     renderer = new THREE.WebGLRenderer({
       canvas,
@@ -66,7 +64,7 @@
     geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
 
-    const points = new THREE.Points(geometry, material);
+    points = new THREE.Points(geometry, material);
     scene.add(points);
 
     controls = new OrbitControls(camera, renderer.domElement);
@@ -83,33 +81,45 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
-  function graph(x: number, z: number) {
-    return Math.sin(f * (x ** 2 + z ** 2 + t)) * a;
-  }
-
   function animate() {
     requestAnimationFrame(animate);
 
-    t += 15;
+    t += 0.02; // Adjust the time increment based on the desired speed of the wave
 
-    const positions = geometry.attributes.position.array;
-    let i = 0;
+    const positions = geometry.getAttribute('position');
+    const array = positions.array as Float32Array;
 
-    for (let xi = 0; xi < count; xi++) {
-      for (let zi = 0; zi < count; zi++) {
-        let x = sep * (xi - count / 2);
-        let z = sep * (zi - count / 2);
+    for (let i = 0; i < array.length; i += 3) {
+      const x = array[i];
+      const z = array[i + 2];
 
-        positions[i + 1] = graph(x, z);
-        i += 3;
-      }
+      // Adjust the water wave function for a more realistic effect
+      const frequencyX = 0.1;
+      const frequencyZ = 0.1;
+      const amplitude = 1.5;
+      const damping = 0.005;
+
+      const waveX = amplitude * Math.sin(frequencyX * x - t);
+      const waveZ = amplitude * Math.sin(frequencyZ * z - t);
+
+      // Apply damping to reduce excessive oscillation
+      const dampingFactor = Math.exp(-damping * t);
+      array[i + 1] = (waveX + waveZ) * dampingFactor;
     }
 
-    geometry.attributes.position.needsUpdate = true;
+    positions.needsUpdate = true;
 
     controls.update();
     renderer.render(scene, camera);
+    // updateCameraPositionText();
   }
+
+  // debug...
+  // let cameraPositionText = ''
+  // function updateCameraPositionText() {
+  //   const cameraPosition = camera.position;
+  //   cameraPositionText = `Camera Position: x: ${cameraPosition.x.toFixed(2)}, y: ${cameraPosition.y.toFixed(2)}, z: ${cameraPosition.z.toFixed(2)}`;
+  // }
 </script>
 
 <style>
@@ -124,4 +134,5 @@
     }
 </style>
 
-<canvas in:fade|global bind:this={canvas}/>
+<canvas in:fade|global bind:this={canvas} />
+<!--<div class="camera-info">{cameraPositionText}</div>-->
