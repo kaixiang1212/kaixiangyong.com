@@ -1,4 +1,8 @@
-<div class="w-screen absolute bottom-0">
+<script>
+    import {fly} from "svelte/transition";
+</script>
+
+<div class="w-screen absolute bottom-0" in:fly={{ y: 200, duration: 2000 }}>
   <div class="z-10 p-2 ml-2 mr-2 transition-all text-center bg-zinc-800 rounded-t-lg shadow-lg text-xs md:text-sm">
     <span class="flex place-content-center items-center">
       Made with&nbsp;
