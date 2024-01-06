@@ -37,6 +37,8 @@
   ]
 
   // Render States.
+  $: innerHeight = 0;
+  $: innerWidth = 0;
   let mounted = false;
   let reduceMotionPreferred = false;
 
@@ -85,15 +87,32 @@
 
 <svelte:head>
   <title>Kai Xiang Yong's Portfolio</title>
-  <meta
-    name="description"
-    content="Kai Xiang Yong is a software engineer who specializes in building web applications."
-  />
+  <meta name="description" content="Explore the professional profile of Kai Xiang Yong. Connect with Kai Xiang Yong on GitHub, LinkedIn, Instagram, and via email. Stay updated on the latest projects and expertise in software development." />
+  <meta name="keywords" content="software engineer, Kai Xiang Yong, developer, coding, programming, portfolio, GitHub, LinkedIn, Instagram, email">
+  <meta name="author" content="Kai Xiang Yong">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Kai Xiang Yong" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://kaixiangyong.com/thumbnail.png" />
+  <meta property="og:image:alt" content="Website Preview" />
+  <meta property="og:description" content="Explore the professional profile of Kai Xiang Yong. Connect with Kai Xiang Yong on GitHub, LinkedIn, Instagram, and via email. Stay updated on the latest projects and expertise in software development." />
+  <meta property="og:url" content="https://kaixiangyong.com/" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@kaixiang1212" />
+  <meta name="twitter:title" content="Kai Xiang Yong" />
+  <meta name="twitter:description" content="Explore the professional profile of Kai Xiang Yong. Connect with Kai Xiang Yong on GitHub, LinkedIn, Instagram, and via email. Stay updated on the latest projects and expertise in software development." />
+  <meta name="twitter:image" content="https://kaixiangyong.com/thumbnail.png" />
+  <meta name="twitter:image:alt" content="Website Preview" />
 </svelte:head>
 
+<svelte:window bind:innerHeight={innerHeight} bind:innerWidth/>
 
 {#if mounted}
-  <div class="container px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex items-center justify-center">
+  <div class="absolute md:px-4 lg:py-4 top-1/2 left-1/2 transform -translate-x-1/2 flex items-center justify-center rounded-2xl {innerHeight < 450 ? '-translate-y-1/2' : '-translate-y-3/4'}">
     <div class="max-h-80" in:fly={{ x: -200, duration: 1000 }}>
       <AsciiPixelate src="me.webp"
                      cellSize="{cellSize}"
@@ -105,7 +124,7 @@
     </div>
     <div class="flex flex-col md:pl-6 pl-2" in:fly={{ x: 200, duration: 1000 }}>
       <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap">
-        Kai Xiang Yong
+        <span class="{innerWidth <= 360 ? '' : 'whitespace-nowrap'}">Kai Xiang</span> Yong
       </h1>
       {#key subtitleIndex}
         <h2 class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base" transition:slide>

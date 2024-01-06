@@ -2,8 +2,8 @@
   import * as THREE from 'three';
   import {BufferGeometry} from 'three';
   import {onDestroy, onMount} from 'svelte';
-  import {fade} from "svelte/transition";
-  import {OrbitControls} from 'three/addons/controls/OrbitControls';
+  import {fade} from 'svelte/transition';
+  import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 
   let t = 0;
 
@@ -42,7 +42,7 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(165.38, 21.75, -0.20)
+    camera.position.set(165.38, 21.75, -0.20);
 
     renderer = new THREE.WebGLRenderer({
       canvas,
@@ -70,7 +70,11 @@
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.20;
-    controls.screenSpacePanning = true;
+    controls.minDistance = 10;
+    controls.maxDistance = 160;
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.minPolarAngle = Math.PI / 3;
+    controls.enablePan = false;
 
     window.addEventListener('resize', onWindowResize, false);
   }
@@ -113,13 +117,6 @@
     renderer.render(scene, camera);
     // updateCameraPositionText();
   }
-
-  // debug...
-  // let cameraPositionText = ''
-  // function updateCameraPositionText() {
-  //   const cameraPosition = camera.position;
-  //   cameraPositionText = `Camera Position: x: ${cameraPosition.x.toFixed(2)}, y: ${cameraPosition.y.toFixed(2)}, z: ${cameraPosition.z.toFixed(2)}`;
-  // }
 </script>
 
 <style>
