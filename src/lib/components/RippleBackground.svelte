@@ -117,6 +117,13 @@
     renderer.render(scene, camera);
     // updateCameraPositionText();
   }
+
+  // debug...
+  // let cameraPositionText = ''
+  // function updateCameraPositionText() {
+  //   const cameraPosition = camera.position;
+  //   cameraPositionText = `Camera Position: x: ${cameraPosition.x.toFixed(2)}, y: ${cameraPosition.y.toFixed(2)}, z: ${cameraPosition.z.toFixed(2)}`;
+  // }
 </script>
 
 <style>
