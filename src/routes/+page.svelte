@@ -4,34 +4,12 @@
   import InstagramIcon from "$lib/images/icons/instagram.svelte";
   import AsciiPixelate from "$lib/components/Ascii/AsciiPixelate.svelte";
   import LinkedinIcon from "$lib/images/icons/linkedin.svelte";
-  import {fly} from "svelte/transition";
-  import {onMount} from "svelte";
+  import {fly, slide} from "svelte/transition";
+  import {onDestroy, onMount} from "svelte";
   import SvelteFooter from "$lib/components/SvelteFooter.svelte";
   import RippleBackground from "$lib/components/RippleBackground.svelte";
 
-  let draw: () => void;
-
-  let mounted = false;
-  let cellSize = 8;
-
-  function render() {
-    const reduceMotionPreferred = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
-    if (reduceMotionPreferred) {
-      draw();
-    } else {
-      setInterval(() => {
-        requestAnimationFrame(() => {
-          draw();
-        })
-      }, 500);
-    }
-  }
-
-  onMount(() => {
-    mounted = true;
-    render();
-  });
-
+  // Constants.
   const links = [
     {
       name: 'GitHub',
@@ -50,6 +28,52 @@
       link: 'https://www.instagram.com/kaixiang1212/'
     }
   ];
+
+  const subtitles = [
+    'Software Engineer @ Intel',
+    'UNSW Comp Sci Graduate',
+    'Full Stack Developer',
+    'Svelte Enthusiastic',
+  ]
+
+  // Render States.
+  let mounted = false;
+  let reduceMotionPreferred = false;
+
+  // Ascii Art.
+  let draw: () => void;
+  const cellSize = 8;
+
+  // Text roller animation.
+  const timeout = 3000;
+  let roller: number;
+  let subtitleIndex = 0;
+
+  onMount(() => {
+    reduceMotionPreferred = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+    mounted = true;
+
+    render();
+    roller = setInterval(() => {
+      subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+    }, timeout);
+  });
+
+  onDestroy(() => {
+    clearInterval(roller);
+  });
+
+  function render() {
+    if (reduceMotionPreferred) {
+      draw();
+    } else {
+      setInterval(() => {
+        requestAnimationFrame(() => {
+          draw();
+        })
+      }, 500);
+    }
+  }
 </script>
 
 <style>
@@ -69,7 +93,7 @@
 
 
 {#if mounted}
-  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex items-center justify-center">
+  <div class="container px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 flex items-center justify-center">
     <div class="max-h-80" in:fly={{ x: -200, duration: 1000 }}>
       <AsciiPixelate src="me.webp"
                      cellSize="{cellSize}"
@@ -83,9 +107,12 @@
       <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white break-keep md:whitespace-nowrap">
         Kai Xiang Yong
       </h1>
-      <h2 class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base">
-        Software Engineer @ Intel
-      </h2>
+      {#key subtitleIndex}
+        <h2 class="mb-3 font-normal text-gray-500 dark:text-gray-400 text-sm md:text-base" transition:slide>
+          {subtitles[subtitleIndex]}
+        </h2>
+      {/key}
+
       <div class="text-xl flex space-x-2">
         {#each links as link (link.name)}
           <div class="w-6 h-6 ml-1">
@@ -108,6 +135,8 @@
     </div>
   </div>
 
-  <RippleBackground />
+  {#if !reduceMotionPreferred}
+    <RippleBackground />
+  {/if}
   <SvelteFooter />
 {/if}
