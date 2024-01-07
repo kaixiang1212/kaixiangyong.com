@@ -80,6 +80,12 @@
     controls.enablePan = false;
 
     window.addEventListener('resize', onWindowResize, false);
+    controls.addEventListener('end', (e) => {
+      gtag('event', 'interact_3d_background', {
+        'position': `x: ${camera?.position?.x.toFixed(2)}, y: ${camera?.position?.y.toFixed(2)}, z: ${camera?.position?.z.toFixed(2)}`,
+        'zoom': controls.target.distanceTo(controls.object.position),
+      });
+    });
   }
 
   function onWindowResize() {
