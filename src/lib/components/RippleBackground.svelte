@@ -1,9 +1,9 @@
 <script lang="ts">
-  import * as THREE from 'three';
-  import {BufferGeometry} from 'three';
-  import {onDestroy, onMount} from 'svelte';
-  import {fade} from 'svelte/transition';
-  import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+  import * as THREE from "three";
+  import { BufferGeometry } from "three";
+  import { onDestroy, onMount } from "svelte";
+  import { fade } from "svelte/transition";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
   let t = 0;
 
@@ -42,8 +42,11 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(165.38, 21.75, -0.20);
-
+    camera.position.set(
+      150.92910266899122,
+      9.856573436881405,
+      -52.18159472090241,
+    );
     renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -100,8 +103,8 @@
       // Adjust the water wave function for a more realistic effect
       const frequencyX = 0.1;
       const frequencyZ = 0.1;
-      const amplitude = 1.5;
-      const damping = 0.005;
+      const amplitude = 2;
+      const damping = 0.00;
 
       const waveX = amplitude * Math.sin(frequencyX * x - t);
       const waveZ = amplitude * Math.sin(frequencyZ * z - t);
@@ -119,11 +122,19 @@
   }
 
   // debug...
-  // let cameraPositionText = ''
+  // let cameraPosition: null | Vector3 = null;
   // function updateCameraPositionText() {
-  //   const cameraPosition = camera.position;
-  //   cameraPositionText = `Camera Position: x: ${cameraPosition.x.toFixed(2)}, y: ${cameraPosition.y.toFixed(2)}, z: ${cameraPosition.z.toFixed(2)}`;
+  //   if (cameraPosition && (camera.position.x !== cameraPosition.x || camera.position.y !== cameraPosition.y || camera.position.z !== cameraPosition.z)) {
+  //     cameraPosition.x = camera.position.x;
+  //     cameraPosition.y = camera.position.y;
+  //     cameraPosition.z = camera.position.z;
+  //   } else if (cameraPosition === null) {
+  //     cameraPosition = new Vector3(camera.position.x, camera.position.y, camera.position.z);
+  //   }
   // }
+  //
+  // $: console.log(cameraPosition)
+  // $: cameraPositionText = `Camera Position: x: ${cameraPosition?.x.toFixed(2)}, y: ${cameraPosition?.y.toFixed(2)}, z: ${cameraPosition?.z.toFixed(2)}`;
 </script>
 
 <style>
