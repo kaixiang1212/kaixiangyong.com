@@ -7,7 +7,7 @@
 
   let t = 0;
 
-  const count = 100;
+  let count = 100;
   const sep = 3;
 
   let scene: THREE.Scene;
@@ -19,6 +19,7 @@
   let points: THREE.Points;
 
   onMount(() => {
+    if (window.innerWidth <= 1024) count = 50;
     init();
     animate();
   });
@@ -42,11 +43,7 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(
-      150.92910266899122,
-      9.856573436881405,
-      -52.18159472090241,
-    );
+    camera.position.set(76.93796232669536,11.30255004126756, -23.415427882759154)
     renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -104,7 +101,7 @@
       // Adjust the water wave function for a more realistic effect
       const frequencyX = 0.1;
       const frequencyZ = 0.1;
-      const amplitude = 2;
+      const amplitude = 1.75;
       const damping = 0.00;
 
       const waveX = amplitude * Math.sin(frequencyX * x - t);
