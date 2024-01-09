@@ -1,14 +1,14 @@
 <script lang="ts">
-  import GithubIcon from "$lib/images/icons/github.svelte";
-  import MailIcon from "$lib/images/icons/mail.svelte";
-  import InstagramIcon from "$lib/images/icons/instagram.svelte";
-  import AsciiPixelate from "$lib/components/Ascii/AsciiPixelate.svelte";
-  import LinkedinIcon from "$lib/images/icons/linkedin.svelte";
-  import {fly, slide} from "svelte/transition";
-  import {onDestroy, onMount} from "svelte";
-  import SvelteFooter from "$lib/components/SvelteFooter.svelte";
-  import RippleBackground from "$lib/components/RippleBackground.svelte";
-  import {links, subtitles} from "$lib/constants";
+  import GithubIcon from '$lib/images/icons/github.svelte';
+  import MailIcon from '$lib/images/icons/mail.svelte';
+  import InstagramIcon from '$lib/images/icons/instagram.svelte';
+  import AsciiPixelate from '$lib/components/Ascii/AsciiPixelate.svelte';
+  import LinkedinIcon from '$lib/images/icons/linkedin.svelte';
+  import { fly, slide } from 'svelte/transition';
+  import { onDestroy, onMount } from 'svelte';
+  import SvelteFooter from '$lib/components/SvelteFooter.svelte';
+  import RippleBackground from '$lib/components/RippleBackground.svelte';
+  import { links, subtitles } from '$lib/constants';
 
   // Render States.
   $: innerHeight = 0;

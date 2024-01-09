@@ -1,8 +1,8 @@
 <script lang="ts">
-  import {onDestroy, onMount} from "svelte";
-  import {fade} from 'svelte/transition';
+  import { onDestroy, onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
 
-  import {AsciiEffect} from "./ascii";
+  import { AsciiEffect } from './ascii';
 
   export let ascii = "!@#$%^&*()+";
   export let src: string;

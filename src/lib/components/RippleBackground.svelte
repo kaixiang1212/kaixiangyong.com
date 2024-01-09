@@ -1,9 +1,9 @@
 <script lang="ts">
-  import * as THREE from "three";
-  import { BufferGeometry } from "three";
-  import { onDestroy, onMount } from "svelte";
-  import { fade } from "svelte/transition";
-  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+  import * as THREE from 'three';
+  import { BufferGeometry } from 'three';
+  import { onDestroy, onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
   let t = 0;
 
