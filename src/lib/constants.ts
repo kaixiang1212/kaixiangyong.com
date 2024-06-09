@@ -18,8 +18,8 @@ export const links = [
 ];
 
 export const subtitles = [
-  'Software Engineer @ Intel',
+  'Software Engineer @ Grab',
   'UNSW Comp Sci Graduate',
-  'Full Stack Developer',
+  'Backend Developer',
   'Svelte Enthusiastic',
 ];
